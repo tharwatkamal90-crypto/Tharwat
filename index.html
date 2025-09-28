@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowGuide – Beauty-App</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo">GlowGuide</div>
+    <div class="language-toggle" role="group" aria-label="Sprachauswahl">
+      <button id="lang-de" class="active" data-lang="de" aria-pressed="true">DE</button>
+      <button id="lang-ar" data-lang="ar" aria-pressed="false">AR</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-text">
+        <h1 data-i18n="heroTitle">Entdecke deine schönste Haut</h1>
+        <p data-i18n="heroSubtitle">
+          Personalisierte Pflegepläne, Rezepte und Produktempfehlungen – alles an einem Ort.
+        </p>
+        <div class="cta-group">
+          <a href="#skin-test" class="btn primary" data-i18n="heroCTA">Starte den Hauttyp-Test</a>
+          <a href="#custom-plan" class="btn secondary" data-i18n="heroCTA2">Erstelle dein Programm</a>
+        </div>
+      </div>
+      <div class="hero-image" role="presentation"></div>
+    </section>
+
+    <section id="skin-test" class="card">
+      <h2 data-i18n="testTitle">Hauttyp-Test</h2>
+      <p data-i18n="testIntro">
+        Beantworte drei Fragen und erfahre, welches Pflegeprogramm am besten zu dir passt.
+      </p>
+      <form id="skin-test-form">
+        <div class="question">
+          <label data-i18n="question1">Wie fühlt sich deine Haut nach der Reinigung an?</label>
+          <select name="q1" required>
+            <option value="" disabled selected hidden data-i18n="choose">Bitte wählen</option>
+            <option value="dry" data-i18n="q1a1">Spannend und trocken</option>
+            <option value="oily" data-i18n="q1a2">Glänzend und fettig</option>
+            <option value="combo" data-i18n="q1a3">T-Zone glänzt, Wangen sind normal</option>
+            <option value="sensitive" data-i18n="q1a4">Rötet sich schnell</option>
+          </select>
+        </div>
+        <div class="question">
+          <label data-i18n="question2">Wie reagiert deine Haut auf neue Produkte?</label>
+          <select name="q2" required>
+            <option value="" disabled selected hidden data-i18n="choose">Bitte wählen</option>
+            <option value="sensitive" data-i18n="q2a1">Reagiert schnell mit Rötungen</option>
+            <option value="oily" data-i18n="q2a2">Verstopft Poren / Pickel</option>
+            <option value="dry" data-i18n="q2a3">Benötigt zusätzliche Feuchtigkeit</option>
+            <option value="combo" data-i18n="q2a4">Manchmal ok, manchmal nicht</option>
+          </select>
+        </div>
+        <div class="question">
+          <label data-i18n="question3">Was ist dein größtes Hautziel?</label>
+          <select name="q3" required>
+            <option value="" disabled selected hidden data-i18n="choose">Bitte wählen</option>
+            <option value="radiance" data-i18n="q3a1">Mehr Glow</option>
+            <option value="balance" data-i18n="q3a2">Weniger Ölglanz</option>
+            <option value="calm" data-i18n="q3a3">Weniger Irritationen</option>
+            <option value="hydration" data-i18n="q3a4">Mehr Feuchtigkeit</option>
+          </select>
+        </div>
+        <button type="submit" class="btn primary" data-i18n="testSubmit">Ergebnis anzeigen</button>
+      </form>
+      <div id="test-result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section id="care-programs" class="card">
+      <h2 data-i18n="programTitle">Pflegeprogramme nach Hauttyp</h2>
+      <div class="program-grid" id="program-grid"></div>
+    </section>
+
+    <section id="recipes" class="card">
+      <h2 data-i18n="recipeTitle">Natürliche Schönheitsrezepte</h2>
+      <div class="recipe-grid" id="recipe-grid"></div>
+    </section>
+
+    <section id="routine" class="card">
+      <h2 data-i18n="routineTitle">Tägliche Routine-Pläne</h2>
+      <div class="routine-grid" id="routine-grid"></div>
+    </section>
+
+    <section id="products" class="card">
+      <h2 data-i18n="productTitle">Produkt-Highlights</h2>
+      <p data-i18n="productSubtitle">Entdecke internationale Bestseller und deutsche Lieblingsmarken.</p>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section id="custom-plan" class="card accent">
+      <h2 data-i18n="customTitle">Stelle dein persönliches Pflegeprogramm zusammen</h2>
+      <p data-i18n="customIntro">
+        Kombiniere Schritte, Produkte und Anwendungen, um deinen perfekten Glow-Plan zu erstellen.
+      </p>
+      <form id="custom-plan-form">
+        <div class="form-row">
+          <label for="plan-skin-type" data-i18n="customSkinType">Dein Hauttyp</label>
+          <select id="plan-skin-type" required>
+            <option value="" disabled selected hidden data-i18n="choose">Bitte wählen</option>
+            <option value="dry" data-i18n="skinDry">Trocken</option>
+            <option value="oily" data-i18n="skinOily">Ölig</option>
+            <option value="combo" data-i18n="skinCombo">Kombiniert</option>
+            <option value="sensitive" data-i18n="skinSensitive">Sensibel</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <fieldset>
+            <legend data-i18n="customFocus">Worauf möchtest du dich fokussieren?</legend>
+            <label><input type="checkbox" value="hydration" /> <span data-i18n="focusHydration">Feuchtigkeit</span></label>
+            <label><input type="checkbox" value="purifying" /> <span data-i18n="focusPurifying">Poren klären</span></label>
+            <label><input type="checkbox" value="soothing" /> <span data-i18n="focusSoothing">Beruhigung</span></label>
+            <label><input type="checkbox" value="antiaging" /> <span data-i18n="focusAntiAging">Anti-Aging</span></label>
+          </fieldset>
+        </div>
+        <div class="form-row">
+          <label for="plan-frequency" data-i18n="customFrequency">Wie viele Tage pro Woche?</label>
+          <input type="number" id="plan-frequency" min="3" max="7" value="5" />
+        </div>
+        <div class="form-row">
+          <label for="plan-notes" data-i18n="customNotes">Besondere Wünsche oder Produkte</label>
+          <textarea id="plan-notes" rows="3" placeholder="z. B. Vitamin C Serum morgens"></textarea>
+        </div>
+        <button type="submit" class="btn primary" data-i18n="customSubmit">Programm generieren</button>
+      </form>
+      <div id="custom-plan-result" class="result" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footer">GlowGuide – Inspiriert von Beauty-Ritualen aus aller Welt.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
